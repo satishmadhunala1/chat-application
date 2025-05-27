@@ -1,7 +1,12 @@
 import axios from 'axios';
 
 // Set base URL for all axios requests
-axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const apiUrl = import.meta.env.VITE_API_URL || 
+  (window.location.hostname === 'localhost' 
+    ? 'http://localhost:5000'
+    : 'https://chat-application-1-vfu1.onrender.com');
+
+axios.defaults.baseURL = apiUrl;
 axios.defaults.withCredentials = true;
 
 // Add request interceptor to handle errors
